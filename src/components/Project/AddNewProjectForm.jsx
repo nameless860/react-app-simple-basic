@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import axios from '../../config/axios.js'
+import { connect } from 'react-redux'
+import { createProject } from '../../actions/projectsAction'
 
-class AddNewProjectForm extends Component {
+class CAddNewProjectForm extends Component {
   constructor(props) {
     super(props)
 
@@ -56,5 +58,16 @@ class AddNewProjectForm extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({})
+
+const mapDispatchToProps = {
+  createProject: createProject,
+}
+
+const AddNewProjectForm = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CAddNewProjectForm)
 
 export default AddNewProjectForm
