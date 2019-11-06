@@ -6,6 +6,8 @@ class ProjectIndex extends Component {
   constructor(props) {
     super(props)
     this.state = { projects: [] }
+
+    this.removeProjectFromList = this.removeProjectFromList.bind(this)
   }
 
   componentDidMount(){
@@ -18,14 +20,23 @@ class ProjectIndex extends Component {
     })
   }
 
+  removeProjectFromList(id) {
+    const projects = this.state.projects || []
+    const index = projects.findIndex(prj => prj.id === id)
+
+    projects.splice(index, 1)
+
+    this.setState({projects: projects})
+  }
+
   render() {
     const projects = this.state.projects || []
 
     return (
       <Fragment>
         <h2 className="my-5">PROJECTS MANAGEMENT</h2>
-        <Link className="btn btn-primary my-3" to="/projects/new">New User</Link>
-        <MyTable data={projects}/>
+        <Link className="btn btn-primary my-3" to="/projects/new">New Project</Link>
+        <MyTable data={projects} removeProjectFromList={this.removeProjectFromList}/>
       </Fragment>
     )
   }

@@ -9,7 +9,7 @@ class MyTable extends Component {
     return(
       <table className="table">
         <MyTableHeader/>
-        <MyTableBody data={data}/>
+        <MyTableBody data={data} removeProjectFromList={this.props.removeProjectFromList}/>
       </table>
     )
   }

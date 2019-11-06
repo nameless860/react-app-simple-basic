@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import ProjectIndex from './components/ProjectIndex'
 import UserIndex from './components/UserIndex'
