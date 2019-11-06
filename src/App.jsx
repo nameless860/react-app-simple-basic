@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import ProjectIndex from './components/ProjectIndex'
-import UserIndex from './components/UserIndex'
-import MyNavbar from './components/MyNavbar'
-import AddNewProjectForm from './components/AddNewProjectForm'
+import ProjectIndex from './components/Project/ProjectIndex'
+import UserIndex from './components/User/UserIndex'
+import MyNavbar from './components/Header/MyNavbar'
+import AddNewProjectForm from './components/Project/AddNewProjectForm'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Switch, Route } from 'react-router'
 

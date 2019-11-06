@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import axios from '../config/axios.js'
+import axios from '../../config/axios.js'
 
 class AddNewProjectForm extends Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import React , { Component, Fragment } from 'react';
-import { requests } from '../constants.js'
-import axios from '../config/axios.js'
-import DeleteModal from './DeleteModal'
+import { requests } from '../../constants.js'
+import axios from '../../config/axios.js'
+import DeleteModal from '../Modal/DeleteModal'
 
 class MyTableBody extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class MyTableBody extends Component {
     }
 
     this.handleToggleDeleteModal = this.handleToggleDeleteModal.bind(this)
-    // this.handleDelete = this.handleDelete.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   handleToggleDeleteModal(project) {

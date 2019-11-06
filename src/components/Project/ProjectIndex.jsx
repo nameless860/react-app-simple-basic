@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import MyTable from './MyTable'
+import MyTable from '../Table/MyTable'
 import { Link } from 'react-router-dom'
 
 class ProjectIndex extends Component {
