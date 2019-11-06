@@ -4,7 +4,7 @@ import MyTableBody from './MyTableBody'
 
 class MyTable extends Component {
   render() {
-    const data = this.props.data || {}
+    const data = this.props.data || []
 
     return(
       <table className="table table-hover">

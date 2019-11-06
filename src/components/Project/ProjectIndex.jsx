@@ -2,23 +2,18 @@ import React, { Component, Fragment } from 'react'
 import MyTable from '../Table/MyTable'
 import { Link } from 'react-router-dom'
 import axios from '../../config/axios'
+import { fetchProjects } from '../../actions/projectsAction'
+import { connect } from 'react-redux'
 
-class ProjectIndex extends Component {
+class CProjectIndex extends Component {
   constructor(props) {
     super(props)
-    this.state = { projects: [] }
 
     this.removeProjectFromList = this.removeProjectFromList.bind(this)
   }
 
   componentDidMount(){
-    axios.get("https://nus-react-demo-backend.herokuapp.com/v1/projects").then(res => {
-      console.log("Get projects successfully!!", res)
-      this.setState({projects: res.data})
-    })
-    .catch(error => {
-      console.log("Get projects data unsuccessfully!!!", error)
-    })
+    this.props.fetchProjects()
   }
 
   removeProjectFromList(id) {
@@ -31,7 +26,7 @@ class ProjectIndex extends Component {
   }
 
   render() {
-    const projects = this.state.projects || []
+    const projects = this.props.projects || []
 
     return (
       <Fragment>
@@ -42,5 +37,18 @@ class ProjectIndex extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  projects: state.projects,
+})
+
+const mapDispatchToProps = {
+  fetchProjects: fetchProjects,
+}
+
+const ProjectIndex = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CProjectIndex)
 
 export default ProjectIndex
