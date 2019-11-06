@@ -8,6 +8,8 @@ const projectsReducer = (state=initState,action) => {
       return action.payload;
     case PROJECT_ACTIONS.CREATE_PROJECT_SUCCESS:
       return state.push(action.payload);
+    case PROJECT_ACTIONS.DELETE_PROJECT_SUCCESS:
+      return state.filter(prj => prj.id !== action.payload)
     default:
       return state;
   }

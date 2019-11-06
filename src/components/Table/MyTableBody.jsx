@@ -1,13 +1,13 @@
 import React , { Component, Fragment } from 'react';
-import { requests } from '../../constants.js'
-import axios from '../../config/axios.js'
 import DeleteModal from '../Modal/DeleteModal'
 import { Link } from 'react-router-dom'
 import StringUtils from 'lodash/string'
+import { connect } from 'react-redux'
+import { deleteProject } from '../../actions/projectsAction'
 
 StringUtils.templateSettings.interpolate = /{{([\s\S]+?)}}/g
 
-class MyTableBody extends Component {
+class CMyTableBody extends Component {
   constructor(props) {
     super(props)
 
@@ -28,19 +28,8 @@ class MyTableBody extends Component {
   }
 
   handleDelete(id) {
-    const url = StringUtils.template(requests.DELETE_PROJECT_URL)({id:id})
-
-    axios.delete(url)
-    .then(res => {
-        console.log("Project deleted successfully")
-        this.props.removeProjectFromList(id)
-        this.setState({isDeleteModalOpen: !this.state.isDeleteModalOpen})
-      },
-      err => {
-        console.log(err)
-        alert(err)
-      }
-    )
+    this.props.deleteProject(id)
+    this.setState({isDeleteModalOpen: !this.state.isDeleteModalOpen})
   }
 
   render() {
@@ -78,5 +67,16 @@ class MyTableBody extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({})
+
+const mapDispatchToProps = {
+  deleteProject: deleteProject,
+}
+
+const MyTableBody = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CMyTableBody)
 
 export default MyTableBody

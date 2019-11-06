@@ -9,7 +9,7 @@ class MyTable extends Component {
     return(
       <table className="table table-hover">
         <MyTableHeader/>
-        <MyTableBody data={data} removeProjectFromList={this.props.removeProjectFromList}/>
+        <MyTableBody data={data}/>
       </table>
     )
   }
