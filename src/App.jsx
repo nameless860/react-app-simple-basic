@@ -4,6 +4,7 @@ import ProjectIndex from './components/Project/ProjectIndex'
 import UserIndex from './components/User/UserIndex'
 import MyNavbar from './components/Header/MyNavbar'
 import AddNewProjectForm from './components/Project/AddNewProjectForm'
+import EditProjectForm from './components/Project/EditProjectForm'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Switch, Route } from 'react-router'
 
@@ -12,14 +13,15 @@ class App extends Component {
     return (
       <Router>
         <MyNavbar />
-        <Switch>
-          <div className="container">
-              <Route path="/" exact component={ProjectIndex} />
-              <Route path="/projects" exact component={ProjectIndex} />
-              <Route path="/users" exac component={UserIndex} />
-              <Route path="/projects/new" exac component={AddNewProjectForm} />
-          </div>
-        </Switch>
+        <div className="container">
+          <Switch>
+            <Route exact path="/" component={ProjectIndex} />
+            <Route exact path="/projects" component={ProjectIndex} />
+            <Route exact path="/users" component={UserIndex} />
+            <Route exact path="/projects/new" component={AddNewProjectForm} />
+            <Route exact path="/projects/:id/edit" component={EditProjectForm} />
+          </Switch>
+        </div>
       </Router>
     )
   }

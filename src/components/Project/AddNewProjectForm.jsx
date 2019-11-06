@@ -13,8 +13,8 @@ class AddNewProjectForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleNameChange(event) {
-     this.setState({name: event.target.value})
+  handleNameChange(e) {
+     this.setState({name: e.target.value})
   }
 
   handleSubmit(e) {

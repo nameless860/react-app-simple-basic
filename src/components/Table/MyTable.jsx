@@ -7,7 +7,7 @@ class MyTable extends Component {
     const data = this.props.data || {}
 
     return(
-      <table className="table">
+      <table className="table table-hover">
         <MyTableHeader/>
         <MyTableBody data={data} removeProjectFromList={this.props.removeProjectFromList}/>
       </table>

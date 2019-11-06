@@ -2,6 +2,10 @@ import React , { Component, Fragment } from 'react';
 import { requests } from '../../constants.js'
 import axios from '../../config/axios.js'
 import DeleteModal from '../Modal/DeleteModal'
+import { Link } from 'react-router-dom'
+import StringUtils from 'lodash/string'
+
+StringUtils.templateSettings.interpolate = /{{([\s\S]+?)}}/g
 
 class MyTableBody extends Component {
   constructor(props) {
@@ -24,7 +28,7 @@ class MyTableBody extends Component {
   }
 
   handleDelete(id) {
-    const url = requests.DELETE_PROJECT_URL + `/${id}`
+    const url = StringUtils.template(requests.DELETE_PROJECT_URL)({id:id})
 
     axios.delete(url)
     .then(res => {
@@ -44,11 +48,12 @@ class MyTableBody extends Component {
     const isDeleteModalOpen = this.state.isDeleteModalOpen
 
     const dataRows = data.map(prj => {
+      const linkToEditProjectForm = `/projects/${prj.id}/edit`
       return(
-        <tr key={prj.id}>
-          <td>{prj.name}</td>
-          <td>
-            <button className="btn btn-warning mr-2">Edit</button>
+        <tr key={prj.id} className="row">
+          <td className="col-8">{prj.name}</td>
+          <td className="col-4">
+            <Link className="btn btn-warning mr-2" to={linkToEditProjectForm}>Edit</Link>
             <button className="btn btn-danger" onClick={() => this.handleToggleDeleteModal(prj) }>Delete</button>
           </td>
         </tr>
