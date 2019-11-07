@@ -2,10 +2,12 @@ import React, { Component, Fragment } from 'react'
 import { requests } from '../../constants.js'
 import axios from '../../config/axios.js'
 import StringUtils from 'lodash/string'
+import { connect } from 'react-redux'
+import { editProject } from '../../actions/projectsAction'
 
 StringUtils.templateSettings.interpolate = /{{([\s\S]+?)}}/g
 
-class EditProjectForm extends Component {
+class CEditProjectForm extends Component {
   constructor(props) {
     super(props)
 
@@ -36,14 +38,8 @@ class EditProjectForm extends Component {
     e.preventDefault()
     const project = this.state.projectData || {}
 
-    const url = StringUtils.template(requests.EDIT_PROJECT_URL)({id: project.id})
-
-    axios.put(url, project)
-    .then(res => {
-      console.log("Edited project successfully!!!")
-      this.props.history.push('/projects')
-    })
-    .catch(err => { alert(err) })
+    this.props.editProject(project)
+    this.props.history.push('/projects')
   }
 
   handleNameChange(e) {
@@ -77,5 +73,17 @@ class EditProjectForm extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+})
+
+const mapDispatchToProps = {
+  editProject: editProject,
+}
+
+const EditProjectForm = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CEditProjectForm)
 
 export default EditProjectForm

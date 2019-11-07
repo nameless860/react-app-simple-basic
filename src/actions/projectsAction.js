@@ -7,6 +7,7 @@ StringUtils.templateSettings.interpolate = /{{([\s\S]+?)}}/g
 export const PROJECT_ACTIONS = {
   RECEIVE_PROJECTS_SUCCESS: 'RECEIVE_PROJECTS_SUCCESS',
   CREATE_PROJECT_SUCCESS: 'CREATE_PROJECT_SUCCESS',
+  EDIT_PROJECT_SUCCESS: 'EDIT_PROJECT_SUCCESS',
   DELETE_PROJECT_SUCCESS: 'DELETE_PROJECT_SUCCESS',
 }
 
@@ -32,6 +33,21 @@ export const createProject = (project) => {
         payload: res.data
       })
     })
+  }
+}
+
+export const editProject = (project) => {
+  return (dispatch) => {
+    const url = StringUtils.template(requests.EDIT_PROJECT_URL)({id: project.id})
+
+    axios.put(url,project)
+    .then(res => {
+      dispatch({
+        type: PROJECT_ACTIONS.EDIT_PROJECT_SUCCESS,
+        payload: res.data,
+      })
+    })
+    .catch()
   }
 }
 

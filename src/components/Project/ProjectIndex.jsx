@@ -6,9 +6,10 @@ import { connect } from 'react-redux'
 
 class CProjectIndex extends Component {
 
-  componentDidMount(){
-    this.props.fetchProjects()
-  }
+  componentDidMount() {
+    if(!this.props.projects.length)
+      this.props.fetchProjects();
+    }
 
   render() {
     const projects = this.props.projects || []
