@@ -12,6 +12,7 @@ class CMyTableBody extends Component {
     super(props)
 
     this.state = {
+      deleteButtonSubmitting: false,
       isDeleteModalOpen: false,
       project: {},
     }
@@ -28,8 +29,15 @@ class CMyTableBody extends Component {
   }
 
   handleDelete(id) {
+    this.setState({deleteButtonSubmitting: true})
     this.props.deleteProject(id)
-    this.setState({isDeleteModalOpen: !this.state.isDeleteModalOpen})
+    .then(() => {
+      this.setState({isDeleteModalOpen: !this.state.isDeleteModalOpen})
+      this.setState({deleteButtonSubmitting: false})
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 
   render() {
@@ -57,6 +65,7 @@ class CMyTableBody extends Component {
 
         <DeleteModal
           isOpen={isDeleteModalOpen}
+          submitting={this.state.deleteButtonSubmitting}
           obj={this.state.project}
           handleDelete={this.handleDelete}
           handleToggleDeleteModal={this.handleToggleDeleteModal}

@@ -12,6 +12,7 @@ class CEditProjectForm extends Component {
     super(props)
 
     this.state ={
+      submitting: false,
       projectData: {
         id: '',
         name: '',
@@ -36,10 +37,13 @@ class CEditProjectForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
+
+    this.setState({submitting: true})
     const project = this.state.projectData || {}
 
-    this.props.editProject(project)
-    this.props.history.push('/projects')
+    this.props.editProject(project).then(() => {
+      this.props.history.push('/projects')
+    })
   }
 
   handleNameChange(e) {
@@ -53,6 +57,16 @@ class CEditProjectForm extends Component {
   render() {
     const projectData = this.state.projectData
 
+    let submitButton
+    if(this.state.submitting) {
+      submitButton = (
+        <div className="btn btn-info active">
+          <div className="spinner-border spinner-border-sm text-light"></div>
+        </div> )
+    } else {
+      submitButton = <button type="submit" className="btn btn-info">Save</button>
+    }
+
     return (
       <Fragment>
         <h2 className="my-5">Edit Project</h2>
@@ -65,7 +79,7 @@ class CEditProjectForm extends Component {
           </div>
           <div className="form-group row">
             <div className="col-sm-10 offset-sm-2">
-              <button type="submit" className="btn btn-info">Save</button>
+              { submitButton }
             </div>
           </div>
         </form>

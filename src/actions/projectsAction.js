@@ -26,7 +26,7 @@ export const fetchProjects = () => {
 
 export const createProject = (project) => {
   return (dispatch) => {
-    axios.post(requests.CREATE_PROJECT, project)
+    return axios.post(requests.CREATE_PROJECT, project)
     .then(res => {
       dispatch({
         type: PROJECT_ACTIONS.CREATE_PROJECT_SUCCESS,
@@ -40,7 +40,7 @@ export const editProject = (project) => {
   return (dispatch) => {
     const url = StringUtils.template(requests.EDIT_PROJECT_URL)({id: project.id})
 
-    axios.put(url,project)
+    return axios.put(url,project)
     .then(res => {
       dispatch({
         type: PROJECT_ACTIONS.EDIT_PROJECT_SUCCESS,
@@ -55,7 +55,7 @@ export const deleteProject = (project_id) => {
   return (dispatch) => {
     const url = StringUtils.template(requests.DELETE_PROJECT_URL)({id: project_id})
 
-    axios.delete(url)
+    return axios.delete(url)
     .then(res => {
       dispatch({
         type: PROJECT_ACTIONS.DELETE_PROJECT_SUCCESS,

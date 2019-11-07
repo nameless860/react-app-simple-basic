@@ -7,6 +7,16 @@ class DeleteModal extends Component {
     const obj = this.props.obj || {}
     const isOpen = this.props.isOpen || false
 
+    let submitButton
+    if(this.props.submitting) {
+      submitButton = (
+        <div className="btn btn-info active">
+          <div className="spinner-border spinner-border-sm text-light"></div>
+        </div> )
+    } else {
+      submitButton = <button className="btn btn-info" onClick={() => this.props.handleDelete(obj.id)}>Yes</button>
+    }
+
     return (
       <Modal isOpen={isOpen} toggle={this.props.toggle}>
           <ModalHeader toggle={this.props.toggle}>Confirmation</ModalHeader>
@@ -15,7 +25,7 @@ class DeleteModal extends Component {
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={this.props.handleToggleDeleteModal}>No</Button>
-            <Button color="primary" onClick={() => this.props.handleDelete(obj.id)}>Yes</Button>
+            {submitButton}
           </ModalFooter>
       </Modal>
     )

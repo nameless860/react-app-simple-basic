@@ -7,6 +7,7 @@ class CAddNewProjectForm extends Component {
     super(props)
 
     this.state = {
+      submitting: false,
       name: ''
     }
 
@@ -21,15 +22,33 @@ class CAddNewProjectForm extends Component {
   handleSubmit(e) {
     e.preventDefault()
 
+    this.setState({submitting: true})
     const project = {
       name: this.state.name
     }
 
     this.props.createProject(project)
-    this.props.history.push('/projects');
+    .then(() => {
+      this.props.history.push('/projects');
+    })
+    .catch(err => {
+      alert(err);
+      this.setState({submitting: false})
+    })
   }
 
   render() {
+    let submitButton
+
+    if(this.state.submitting) {
+      submitButton = (
+        <div className="btn btn-info active">
+          <div className="spinner-border spinner-border-sm text-light"></div>
+        </div> )
+    } else {
+      submitButton = <button type="submit" className="btn btn-info">Save</button>
+    }
+
     return (
       <Fragment>
         <h2 className="my-5">New Project</h2>
@@ -42,7 +61,7 @@ class CAddNewProjectForm extends Component {
           </div>
           <div className="form-group row">
             <div className="col-sm-10 offset-sm-2">
-              <button type="submit" className="btn btn-info">Save</button>
+              {submitButton}
             </div>
           </div>
         </form>
