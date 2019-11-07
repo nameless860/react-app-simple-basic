@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import axios from '../../config/axios.js'
 import { connect } from 'react-redux'
 import { createProject } from '../../actions/projectsAction'
 
@@ -26,15 +25,8 @@ class CAddNewProjectForm extends Component {
       name: this.state.name
     }
 
-    axios.post("https://nus-react-demo-backend.herokuapp.com/v1/projects", project)
-      .then(res => {
-        console.log("Project created successfully")
-        this.props.history.push('/projects');
-      })
-      .catch(err => {
-        console.log("can't create project");
-        alert(err);
-      })
+    this.props.createProject(project)
+    this.props.history.push('/projects');
   }
 
   render() {

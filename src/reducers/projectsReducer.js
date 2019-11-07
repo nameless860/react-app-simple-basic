@@ -7,9 +7,9 @@ const projectsReducer = (state=initState,action) => {
     case PROJECT_ACTIONS.RECEIVE_PROJECTS_SUCCESS:
       return action.payload;
     case PROJECT_ACTIONS.CREATE_PROJECT_SUCCESS:
-      return state.push(action.payload);
+      return [...state, action.payload];
     case PROJECT_ACTIONS.EDIT_PROJECT_SUCCESS:
-      return state.map(prj => prj.id === action.payload.id ? action.payload : prj );
+      return state.map(prj => prj.id === action.payload.id ? action.payload : prj);
     case PROJECT_ACTIONS.DELETE_PROJECT_SUCCESS:
       return state.filter(prj => prj.id !== action.payload)
     default:
