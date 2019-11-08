@@ -38,7 +38,11 @@ class CAddNewProjectForm extends Component {
       this.props.history.push('/projects');
     })
     .catch(err => {
-      alert(err);
+      this.props.createFlash({
+        id: Date.now(),
+        type: 'error',
+        message: 'Something went wrong. Failed to create project!'
+      })
       this.setState({submitting: false})
     })
   }

@@ -4,6 +4,7 @@ import axios from '../../config/axios.js'
 import StringUtils from 'lodash/string'
 import { connect } from 'react-redux'
 import { editProject } from '../../actions/projectsAction'
+import { createFlash } from '../../actions/flashesAction'
 
 StringUtils.templateSettings.interpolate = /{{([\s\S]+?)}}/g
 
@@ -32,7 +33,7 @@ class CEditProjectForm extends Component {
       console.log("Got project by id successfuly!!!")
       this.setState({projectData: res.data})
     })
-    .catch(err => { alert(err) })
+    .catch(err => {})
   }
 
   handleSubmit(e) {
@@ -41,8 +42,22 @@ class CEditProjectForm extends Component {
     this.setState({submitting: true})
     const project = this.state.projectData || {}
 
-    this.props.editProject(project).then(() => {
+    this.props.editProject(project)
+    .then(() => {
+      this.props.createFlash({
+        id: Date.now(),
+        type: 'success',
+        message: 'The project has been edited successfully!'
+      })
       this.props.history.push('/projects')
+    })
+    .catch(err => {
+      this.props.createFlash({
+        id: Date.now(),
+        type: 'error',
+        message: 'Something went wrong. Failed to edit project!'
+      })
+      this.setState({submitting: false});
     })
   }
 
@@ -93,6 +108,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   editProject: editProject,
+  createFlash,
 }
 
 const EditProjectForm = connect(

@@ -48,7 +48,7 @@ class CMyFlash extends Component {
       <Toast
        onClose={() => this.onClose()}
        show={this.state.show}
-       delay={4000}
+       delay={3000}
        autohide
       >
         <Toast.Header className={`text-white ${bgClass}`}>

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import StringUtils from 'lodash/string'
 import { connect } from 'react-redux'
 import { deleteProject } from '../../actions/projectsAction'
+import { createFlash } from '../../actions/flashesAction'
 
 StringUtils.templateSettings.interpolate = /{{([\s\S]+?)}}/g
 
@@ -32,10 +33,20 @@ class CMyTableBody extends Component {
     this.setState({deleteButtonSubmitting: true})
     this.props.deleteProject(id)
     .then(() => {
+      this.props.createFlash({
+        id: Date.now(),
+        type: 'success',
+        message: 'The project has been deleted successfully!'
+      })
       this.setState({isDeleteModalOpen: !this.state.isDeleteModalOpen})
       this.setState({deleteButtonSubmitting: false})
     })
     .catch(err => {
+      this.props.createFlash({
+        id: Date.now(),
+        type: 'error',
+        message: 'Something went wrong. Failed to delete project!'
+      })
       console.log(err)
     })
   }
@@ -81,6 +92,7 @@ const mapStateToProps = (state) => ({})
 
 const mapDispatchToProps = {
   deleteProject: deleteProject,
+  createFlash,
 }
 
 const MyTableBody = connect(
