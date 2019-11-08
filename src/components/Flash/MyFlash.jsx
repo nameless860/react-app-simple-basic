@@ -20,7 +20,7 @@ class CMyFlash extends Component {
     return {
       error: "Error",
       warning: "Warning",
-      info: "Info",
+      success: "Success",
     }[flashType]
   }
 
@@ -32,14 +32,26 @@ class CMyFlash extends Component {
   render() {
     let flash = this.props.flash
 
+    let bgClass;
+    switch(flash.type) {
+      case 'error':
+        bgClass = 'bg-danger';
+        break;
+      case 'warning':
+        bgClass = 'bg-warning';
+        break;
+      default:
+        bgClass = 'bg-success';
+    }
+
     return (
       <Toast
        onClose={() => this.onClose()}
        show={this.state.show}
-       delay={2000}
+       delay={4000}
        autohide
       >
-        <Toast.Header>
+        <Toast.Header className={`text-white ${bgClass}`}>
           <strong className="mr-auto">
             {this.typeToTitle(flash.type)}
           </strong>

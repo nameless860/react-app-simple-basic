@@ -32,7 +32,7 @@ class CAddNewProjectForm extends Component {
     .then(() => {
       this.props.createFlash({
         id: Date.now(),
-        type: 'info',
+        type: 'success',
         message: 'The project has been created successfully!'
       })
       this.props.history.push('/projects');
