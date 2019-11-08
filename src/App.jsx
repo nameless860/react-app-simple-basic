@@ -7,14 +7,14 @@ import AddNewProjectForm from './components/Project/AddNewProjectForm'
 import EditProjectForm from './components/Project/EditProjectForm'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Switch, Route } from 'react-router'
-import MyFlash from './components/Flash/MyFlash'
+import MyFlashes from './components/Flash/MyFlashes'
 
 class App extends Component {
   render() {
     return (
       <Router>
         <MyNavbar />
-        <MyFlash />
+        <MyFlashes />
         <div className="container">
           <Switch>
             <Route exact path="/" component={ProjectIndex} />

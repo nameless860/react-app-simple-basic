@@ -3,28 +3,17 @@ import {Toast} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {deleteFlash} from '../../actions/flashesAction'
 
-import './MyFlash.scss'
+// import './MyFlash.scss'
 
 class CMyFlash extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentFlash: {},
-      show: false
+      show: true
     }
 
     this.typeToTitle = this.typeToTitle.bind(this);
-  }
-
-  static getDerivedStateFromProps(nextProps, state) {
-    let newState = {...state}
-    newState.currentFlash = nextProps.flashes[0] || {}
-    newState.show = nextProps.flashes.length > 0
-    return newState
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextState.currentFlash.id !== this.state.currentFlash.id
+    this.onClose = this.onClose.bind(this);
   }
 
   typeToTitle(flashType) {
@@ -37,11 +26,11 @@ class CMyFlash extends Component {
 
   onClose() {
     this.setState({show: false})
-    this.props.deleteFlash(this.state.currentFlash.id)
+    this.props.deleteFlash(this.props.flash.id)
   }
 
   render() {
-    let flash = this.state.currentFlash
+    let flash = this.props.flash
 
     return (
       <Toast
