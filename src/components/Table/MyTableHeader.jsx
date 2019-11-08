@@ -4,7 +4,7 @@ class MyTableHeader extends Component {
   render() {
     return(
       <thead>
-        <tr className="row">
+        <tr>
           <th className="col-8">Name</th>
           <th className="col-4">Actions</th>
         </tr>

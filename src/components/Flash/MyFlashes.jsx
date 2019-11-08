@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Toast} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {deleteFlash} from '../../actions/flashesAction'
 import MyFlash from './MyFlash'

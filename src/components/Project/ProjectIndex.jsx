@@ -5,9 +5,6 @@ import { fetchProjects } from '../../actions/projectsAction'
 import { connect } from 'react-redux'
 
 class CProjectIndex extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     if(!this.props.projects.length) {

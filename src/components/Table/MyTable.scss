@@ -1,0 +1,24 @@
+.table {
+  tbody {
+    height: calc(100vh - 340px) ;
+    overflow-y: auto;
+    width: 100%;
+
+    td {
+      line-height: 40px;
+    }
+
+    tr {
+      cursor: pointer;
+      height: 65px;
+    }
+  }
+
+  thead,tbody,tr,td,th {
+    display: block;
+  }
+
+  th,td {
+    float: left;
+  }
+}

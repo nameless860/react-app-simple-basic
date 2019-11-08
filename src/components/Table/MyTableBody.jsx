@@ -58,7 +58,7 @@ class CMyTableBody extends Component {
     const dataRows = data.map(prj => {
       const linkToEditProjectForm = `/projects/${prj.id}/edit`
       return(
-        <tr key={prj.id} className="row">
+        <tr key={prj.id}>
           <td className="col-8">{prj.name}</td>
           <td className="col-4">
             <Link className="btn btn-warning mr-2" to={linkToEditProjectForm}>Edit</Link>
