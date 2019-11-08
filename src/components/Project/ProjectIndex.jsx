@@ -3,6 +3,7 @@ import MyTable from '../Table/MyTable'
 import { Link } from 'react-router-dom'
 import { fetchProjects } from '../../actions/projectsAction'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 class CProjectIndex extends Component {
 
@@ -33,12 +34,16 @@ class CProjectIndex extends Component {
     }
     return (
       <Fragment>
-        <h2 className="my-5">PROJECTS MANAGEMENT</h2>
+        <h2 className="my-5">{this.context.t('project_page.title')}</h2>
         <Link className="btn btn-primary my-3" to="/projects/new"><b>+</b> New Project</Link>
         { tableData  }
       </Fragment>
     )
   }
+}
+
+CProjectIndex.contextTypes = {
+  t: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
