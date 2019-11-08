@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { createProject } from '../../actions/projectsAction'
+import { createFlash } from '../../actions/flashesAction'
 
 class CAddNewProjectForm extends Component {
   constructor(props) {
@@ -29,6 +30,11 @@ class CAddNewProjectForm extends Component {
 
     this.props.createProject(project)
     .then(() => {
+      this.props.createFlash({
+        id: Date.now(),
+        type: 'info',
+        message: 'The project has been created successfully!'
+      })
       this.props.history.push('/projects');
     })
     .catch(err => {
@@ -74,6 +80,7 @@ const mapStateToProps = (state) => ({})
 
 const mapDispatchToProps = {
   createProject: createProject,
+  createFlash,
 }
 
 const AddNewProjectForm = connect(
