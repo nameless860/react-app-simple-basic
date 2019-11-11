@@ -20,7 +20,7 @@ const store = createStore(combinedReducers,middleware);
 
 ReactDOM.render(
   <Provider store={store}>
-    <I18n translations={translations} initialLang="en">
+    <I18n translations={translations} initialLang="en" fallbackLang="zh">
       <App />
     </I18n>
   </Provider>,

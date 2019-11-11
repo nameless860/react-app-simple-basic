@@ -5,6 +5,7 @@ import StringUtils from 'lodash/string'
 import { connect } from 'react-redux'
 import { deleteProject } from '../../actions/projectsAction'
 import { createFlash } from '../../actions/flashesAction'
+import { PropTypes } from 'prop-types'
 
 StringUtils.templateSettings.interpolate = /{{([\s\S]+?)}}/g
 
@@ -30,13 +31,15 @@ class CMyTableBody extends Component {
   }
 
   handleDelete(id) {
+    const t = this.context.t;
+
     this.setState({deleteButtonSubmitting: true})
     this.props.deleteProject(id)
     .then(() => {
       this.props.createFlash({
         id: Date.now(),
         type: 'success',
-        message: 'The project has been deleted successfully!'
+        message: t("flash.delete_success",{model: t("project")})
       })
       this.setState({isDeleteModalOpen: !this.state.isDeleteModalOpen})
       this.setState({deleteButtonSubmitting: false})
@@ -45,13 +48,15 @@ class CMyTableBody extends Component {
       this.props.createFlash({
         id: Date.now(),
         type: 'error',
-        message: 'Something went wrong. Failed to delete project!'
+        message: t("flash.delete_unsuccess",{model: t("project")})
       })
       console.log(err)
     })
   }
 
   render() {
+    const t = this.context.t;
+
     const data = this.props.data || []
     const isDeleteModalOpen = this.state.isDeleteModalOpen
 
@@ -61,8 +66,8 @@ class CMyTableBody extends Component {
         <tr key={prj.id}>
           <td className="col-8">{prj.name}</td>
           <td className="col-4">
-            <Link className="btn btn-warning mr-2" to={linkToEditProjectForm}>Edit</Link>
-            <button className="btn btn-danger" onClick={() => this.handleToggleDeleteModal(prj) }>Delete</button>
+            <Link className="btn btn-warning mr-2" to={linkToEditProjectForm}>{t("table.table_body.edit")}</Link>
+            <button className="btn btn-danger" onClick={() => this.handleToggleDeleteModal(prj) }>{t("table.table_body.delete")}</button>
           </td>
         </tr>
       )
@@ -86,6 +91,10 @@ class CMyTableBody extends Component {
       </Fragment>
     )
   }
+}
+
+CMyTableBody.contextTypes = {
+  t: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({})

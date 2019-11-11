@@ -5,3 +5,16 @@ export const requests = {
   DELETE_PROJECT_URL: "/v1/projects/{{id}}",
   EDIT_PROJECT_URL: "/v1/projects/{{id}}",
 }
+
+export const flash_title = {
+  en: {
+    success: "Success",
+    warning: "Warning",
+    error: "Error",
+  },
+  zh: {
+    success: "成功",
+    warning: "警报",
+    error: "失败",
+  }
+}

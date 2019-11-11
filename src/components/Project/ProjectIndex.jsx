@@ -6,36 +6,46 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 class CProjectIndex extends Component {
+  constructor(props) {
+    super(props);
 
-  componentDidMount() {
-    if(!this.props.projects.length) {
-      this.props.fetchProjects();
+    this.state = {
+      fetching: true,
     }
   }
 
+  componentDidMount() {
+    this.props.fetchProjects()
+    .then(() => {
+      this.setState({fetching: false});
+    })
+  }
+
   render() {
+    const t = this.context.t;
+
     const projects = this.props.projects || []
 
     let tableData
-    if(projects.length) {
-      tableData = <MyTable data={projects}/>
-    } else {
+    if(this.state.fetching) {
       tableData = <div>
-          <div className="spinner-grow text-muted"></div>
-          <div className="spinner-grow text-primary"></div>
-          <div className="spinner-grow text-success"></div>
-          <div className="spinner-grow text-info"></div>
-          <div className="spinner-grow text-warning"></div>
-          <div className="spinner-grow text-danger"></div>
-          <div className="spinner-grow text-secondary"></div>
-          <div className="spinner-grow text-dark"></div>
-          <div className="spinner-grow text-light"></div>
+        <div className="spinner-grow text-muted"></div>
+        <div className="spinner-grow text-primary"></div>
+        <div className="spinner-grow text-success"></div>
+        <div className="spinner-grow text-info"></div>
+        <div className="spinner-grow text-warning"></div>
+        <div className="spinner-grow text-danger"></div>
+        <div className="spinner-grow text-secondary"></div>
+        <div className="spinner-grow text-dark"></div>
+        <div className="spinner-grow text-light"></div>
       </div>;
+    } else {
+      tableData = <MyTable data={projects}/>
     }
     return (
       <Fragment>
-        <h2 className="my-5">{this.context.t('project_page.title')}</h2>
-        <Link className="btn btn-primary my-3" to="/projects/new"><b>+</b> New Project</Link>
+        <h2 className="my-5">{t('project_page.title')}</h2>
+        <Link className="btn btn-primary my-3" to="/projects/new"><b>+</b> {t("project_page.new_project")}</Link>
         { tableData  }
       </Fragment>
     )

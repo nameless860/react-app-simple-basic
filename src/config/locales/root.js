@@ -1,3 +1,7 @@
+import { en } from './en'
+import { zh } from './zh'
+
 export const translations = {
-  en: { "project_page.title": "PROJECTS MANAGEMENTaaa" },
+  en: en,
+  zh: zh,
 }

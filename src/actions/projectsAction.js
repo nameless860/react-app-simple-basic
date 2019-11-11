@@ -6,6 +6,7 @@ StringUtils.templateSettings.interpolate = /{{([\s\S]+?)}}/g
 
 export const PROJECT_ACTIONS = {
   RECEIVE_PROJECTS_SUCCESS: 'RECEIVE_PROJECTS_SUCCESS',
+  RECEIVE_PROJECT_SUCCESS: 'RECEIVE_PROJECT_SUCCESS',
   CREATE_PROJECT_SUCCESS: 'CREATE_PROJECT_SUCCESS',
   EDIT_PROJECT_SUCCESS: 'EDIT_PROJECT_SUCCESS',
   DELETE_PROJECT_SUCCESS: 'DELETE_PROJECT_SUCCESS',
@@ -13,7 +14,7 @@ export const PROJECT_ACTIONS = {
 
 export const fetchProjects = () => {
   return (dispatch) => {
-    axios.get(requests.GET_PROJECTS)
+    return axios.get(requests.GET_PROJECTS)
     .then(res => {
       dispatch({
         type: PROJECT_ACTIONS.RECEIVE_PROJECTS_SUCCESS,
@@ -21,6 +22,21 @@ export const fetchProjects = () => {
       })
     })
     .catch(err => { alert(err) })
+  }
+}
+
+export const getProject = (project_id) => {
+  return dispatch => {
+    const url = StringUtils.template(requests.GET_PROJECT_BY_ID_URL)({id: project_id})
+
+    return axios.get(url)
+    .then(res => {
+      dispatch({
+        type: PROJECT_ACTIONS.RECEIVE_PROJECT_SUCCESS,
+        payload: res.data
+      })
+    })
+    .catch(err => {})
   }
 }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Toast} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {deleteFlash} from '../../actions/flashesAction'
+import {flash_title} from '../../constants'
 
 // import './MyFlash.scss'
 
@@ -17,11 +18,8 @@ class CMyFlash extends Component {
   }
 
   typeToTitle(flashType) {
-    return {
-      error: "Error",
-      warning: "Warning",
-      success: "Success",
-    }[flashType]
+    const lang = this.props.lang || "zh"
+    return flash_title[lang][flashType];
   }
 
   onClose() {
@@ -64,6 +62,7 @@ class CMyFlash extends Component {
 
 const mapStoreToProps = (store) => ({
   flashes: store.flashes,
+  lang: store.i18nState.lang,
 })
 
 const mapDispatchToProps = {

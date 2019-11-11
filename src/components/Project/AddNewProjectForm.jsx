@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { createProject } from '../../actions/projectsAction'
 import { createFlash } from '../../actions/flashesAction'
+import { PropTypes } from 'prop-types'
 
 class CAddNewProjectForm extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class CAddNewProjectForm extends Component {
   }
 
   handleSubmit(e) {
+    const t = this.context.t
     e.preventDefault()
 
     this.setState({submitting: true})
@@ -33,7 +35,7 @@ class CAddNewProjectForm extends Component {
       this.props.createFlash({
         id: Date.now(),
         type: 'success',
-        message: 'The project has been created successfully!'
+        message: t("flash.create_success",{model: t("project")})
       })
       this.props.history.push('/projects');
     })
@@ -41,13 +43,15 @@ class CAddNewProjectForm extends Component {
       this.props.createFlash({
         id: Date.now(),
         type: 'error',
-        message: 'Something went wrong. Failed to create project!'
+        message: t("flash.create_unsuccess",{model: t("project")})
       })
       this.setState({submitting: false})
     })
   }
 
   render() {
+    const t = this.context.t;
+
     let submitButton
 
     if(this.state.submitting) {
@@ -56,17 +60,17 @@ class CAddNewProjectForm extends Component {
           <div className="spinner-border spinner-border-sm text-light"></div>
         </div> )
     } else {
-      submitButton = <button type="submit" className="btn btn-info">Save</button>
+      submitButton = <button type="submit" className="btn btn-info">{t("project.button.save")}</button>
     }
 
     return (
       <Fragment>
-        <h2 className="my-5">New Project</h2>
+        <h2 className="my-5">{t("add_new_project_page.title")}</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group row">
-            <label htmlFor="formName" className="form-label col-form-label col-sm-2">Name</label>
+            <label htmlFor="formName" className="form-label col-form-label col-sm-2">{t("project.fields.name")}</label>
             <div className="col-sm-10">
-              <input id="formName" className="form-control" type="text" name="name" placeholder="Enter name" onChange={this.handleNameChange}/>
+              <input id="formName" className="form-control" type="text" name="name" placeholder={t("project.fields.name.placeholder")} onChange={this.handleNameChange}/>
             </div>
           </div>
           <div className="form-group row">
@@ -78,6 +82,10 @@ class CAddNewProjectForm extends Component {
       </Fragment>
     )
   }
+}
+
+CAddNewProjectForm.contextTypes = {
+  t: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({})
