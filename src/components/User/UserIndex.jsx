@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import MyTable from '../Table/MyTable'
+import UsersTable from './UsersTable'
 
 class UserIndex extends Component {
   constructor(props) {
@@ -8,13 +9,13 @@ class UserIndex extends Component {
   }
 
   componentDidMount(){
-    // window.axios.get("https://nus-react-demo-backend.herokuapp.com/v1/projects").then(res => {
-    //   console.log("Get users successfully!!", res)
-    //   this.setState({users: res.data})
-    // })
-    // .catch(error => {
-    //   console.log(">>>>>>>>>>>> Having error", error)
-    // })
+    window.axios.get("https://nus-react-demo-backend.herokuapp.com/v1/users").then(res => {
+      console.log("Get users successfully!!", res)
+      this.setState({users: res.data})
+    })
+    .catch(error => {
+      console.log(">>>>>>>>>>>> Having error", error)
+    })
   }
 
   render() {
@@ -24,7 +25,7 @@ class UserIndex extends Component {
       <Fragment>
         <h2 className="my-5">USERS MANAGEMENT</h2>
         <button className="btn btn-primary my-3"><b>+</b> New User</button>
-        <MyTable data={users}/>
+        <UsersTable users={this.state.users} />
       </Fragment>
     )
   }
