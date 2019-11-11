@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { deleteProject } from '../../actions/projectsAction'
 import { createFlash } from '../../actions/flashesAction'
 import { PropTypes } from 'prop-types'
+import { withRouter } from 'react-router'
 
 StringUtils.templateSettings.interpolate = /{{([\s\S]+?)}}/g
 
@@ -56,6 +57,7 @@ class CMyTableBody extends Component {
 
   render() {
     const t = this.context.t;
+    const props = this.props;
 
     const data = this.props.data || []
     const isDeleteModalOpen = this.state.isDeleteModalOpen
@@ -64,7 +66,7 @@ class CMyTableBody extends Component {
       const linkToEditProjectForm = `/projects/${prj.id}/edit`
       return(
         <tr key={prj.id}>
-          <td className="col-8">{prj.name}</td>
+          <td className="col-8" onClick={() => {props.history.push(`/projects/${prj.id}`)}}>{prj.name}</td>
           <td className="col-4">
             <Link className="btn btn-warning mr-2" to={linkToEditProjectForm}>{t("table.table_body.edit")}</Link>
             <button className="btn btn-danger" onClick={() => this.handleToggleDeleteModal(prj) }>{t("table.table_body.delete")}</button>
@@ -109,4 +111,4 @@ const MyTableBody = connect(
   mapDispatchToProps
 )(CMyTableBody)
 
-export default MyTableBody
+export default withRouter(MyTableBody)

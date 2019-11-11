@@ -10,7 +10,7 @@ export const zh = {
   "header.projects": "项目",
   "header.users": "用户",
 
-  "table.header.name": "姓名",
+  "table.header.name": "标题",
   "table.header.action": "操作",
 
   "table.table_body.edit": "更改",
@@ -18,8 +18,10 @@ export const zh = {
 
   "add_new_project_page.title": "新项目",
   "edit_project_page.title": "更改项目",
-  "project.fields.name": "姓名",
+  "project.information": "项目细节",
+  "project.fields.name": "标题:",
   "project.fields.name.placeholder": "输入名字",
+  "project.fields.involved_users": "有关成员",
   "project.button.save": "保存",
 
   "flash.success": "成功",
@@ -32,4 +34,6 @@ export const zh = {
 
   "modal.delete.title": "确认",
   "modal.delete": "您确定要删除这个{modal}({name})吗?",
+
+  "project.fields.users.no_users": "没有参加者",
 }

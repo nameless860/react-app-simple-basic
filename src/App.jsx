@@ -8,6 +8,7 @@ import EditProjectForm from './components/Project/EditProjectForm'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Switch, Route } from 'react-router'
 import MyFlashes from './components/Flash/MyFlashes'
+import ProjectDetails from './components/Project/ProjectDetails'
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route exact path="/users" component={UserIndex} />
             <Route exact path="/projects/new" component={AddNewProjectForm} />
             <Route exact path="/projects/:id/edit" component={EditProjectForm} />
+            <Route exact path="/projects/:id" component={ProjectDetails} />
           </Switch>
         </div>
       </Router>

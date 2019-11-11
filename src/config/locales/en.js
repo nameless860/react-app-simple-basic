@@ -18,8 +18,10 @@ export const en = {
 
   "add_new_project_page.title": "New Project",
   "edit_project_page.title": "Edit Project",
-  "project.fields.name": "Name",
+  "project.information": "PROJECT INFORMATION",
+  "project.fields.name": "Name:",
   "project.fields.name.placeholder": "Enter name",
+  "project.fields.involved_users": "Involved users",
   "project.button.save": "Save",
 
   "flash.success": "Success",
@@ -33,4 +35,5 @@ export const en = {
   "modal.delete.title": "Confirmation",
   "modal.delete": "Are you sure you want to delete this {modal}({name})?",
 
+  "project.fields.users.no_users": "No users joining",
 }
