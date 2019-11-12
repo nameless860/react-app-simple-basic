@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import axios from '../../config/axios'
-import { requests } from '../../constants'
 import { signInUser } from '../../config/redux-token-auth'
 import { createFlash } from '../../actions/flashesAction'
 import { connect } from 'react-redux'

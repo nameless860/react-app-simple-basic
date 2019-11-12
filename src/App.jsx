@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {Provider} from 'react-redux'
 import I18n from "redux-i18n"
 import './App.css';
-import { BrowserRouter as Router } from 'react-router-dom'
-import { Switch, Route } from 'react-router'
 import Routes from './routes'
 import {translations} from "./config/locales/root"
 import combinedReducers from './reducers'

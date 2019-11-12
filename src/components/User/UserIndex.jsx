@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import MyTable from '../Table/MyTable'
 import UsersTable from './UsersTable'
 
 class UserIndex extends Component {
@@ -25,7 +24,7 @@ class UserIndex extends Component {
       <Fragment>
         <h2 className="my-5">USERS MANAGEMENT</h2>
         <button className="btn btn-primary my-3"><b>+</b> New User</button>
-        <UsersTable users={this.state.users} />
+        <UsersTable users={users} />
       </Fragment>
     )
   }

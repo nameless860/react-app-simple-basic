@@ -1,6 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import { requests } from '../../constants.js'
-import axios from '../../config/axios.js'
 import StringUtils from 'lodash/string'
 import { connect } from 'react-redux'
 import { getProject } from '../../actions/projectsAction'

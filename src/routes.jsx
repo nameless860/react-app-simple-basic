@@ -30,9 +30,9 @@ class Routes extends Component {
         <MyFlashes />
         <div className="container">
           <Switch>
-            <Route exact path="/" component={ProjectIndex} />
+            <Route exact path="/" component={ProjectIndexController} />
             <Route exact path="/signin" component={requireLoggedOut(SignIn,isSignedIn)}/>
-            <Route exact path="/projects" component={ProjectIndex} />
+            <Route exact path="/projects" component={ProjectIndexController} />
             <Route exact path="/users" component={UserIndex} />
             <Route exact path="/projects/new" component={AddNewProjectForm} />
             <Route exact path="/projects/:id/edit" component={EditProjectForm} />
