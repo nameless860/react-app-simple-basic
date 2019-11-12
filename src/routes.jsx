@@ -9,6 +9,7 @@ import EditProjectForm from './components/Project/EditProjectForm'
 import ProjectDetails from './components/Project/ProjectDetails'
 import SignIn from './components/SignIn/SignIn'
 import { connect } from 'react-redux'
+import {requireLoggedOut} from './services/auth_service'
 
 import { generateRequireSignInWrapper } from 'redux-token-auth'
 
@@ -19,7 +20,10 @@ const requireSignIn = generateRequireSignInWrapper({
 const ProjectIndexController = requireSignIn(ProjectIndex)
 
 class Routes extends Component {
+
   render() {
+    const isSignedIn = this.props.currentUser.isSignedIn
+
     return (
       <Router>
         <MyNavbar />
@@ -27,10 +31,7 @@ class Routes extends Component {
         <div className="container">
           <Switch>
             <Route exact path="/" component={ProjectIndex} />
-            <Route
-              exact path="/signin"
-              component={SignIn}
-            />
+            <Route exact path="/signin" component={requireLoggedOut(SignIn,isSignedIn)}/>
             <Route exact path="/projects" component={ProjectIndex} />
             <Route exact path="/users" component={UserIndex} />
             <Route exact path="/projects/new" component={AddNewProjectForm} />
