@@ -2,6 +2,10 @@ export const en = {
   "project": "project",
   "button.yes": "Yes",
   "button.no": "No",
+  "button.log_in": "Log In",
+  "button.sign_in": "Sign In",
+  "button.log_out": "Log Out",
+  "button.sign_up": "Sign Up",
 
   "project_page.title": "PROJECTS MANAGEMENT",
   "project_page.new_project": "New Project",
@@ -31,9 +35,19 @@ export const en = {
   "flash.create_unsuccess": "Something went wrong. Failed to create {model}!",
   "flash.delete_success": "The {model} has been deleted successfully!",
   "flash.delete_unsuccess": "Something went wrong. Failed to delete {model}!",
+  "flash.sign_in_success": "Signed in successfully!",
+  "flash.sign_in_unsuccess": "Failed to sign in!",
+  "flash.log_out_success": "Logged out successfully!",
+  "flash.log_out_unsuccess": "Failed to log out!",
+
 
   "modal.delete.title": "Confirmation",
   "modal.delete": "Are you sure you want to delete this {modal}({name})?",
 
   "project.fields.users.no_users": "No users joining",
+
+  "homepage.welcome": "Welcome to homepage",
+
+  "user.fields.email": "Email",
+  "user.fields.password": "Password",
 }

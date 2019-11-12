@@ -15,6 +15,7 @@ class CProjectIndex extends Component {
   }
 
   componentDidMount() {
+    this.props.currentUser.isSignedIn &&
     this.props.fetchProjects()
     .then(() => {
       this.setState({fetching: false});
@@ -57,6 +58,7 @@ CProjectIndex.contextTypes = {
 }
 
 const mapStateToProps = (state) => ({
+  currentUser: state.reduxTokenAuth.currentUser,
   projects: state.projects,
 })
 

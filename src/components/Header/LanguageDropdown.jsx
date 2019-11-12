@@ -15,7 +15,7 @@ class LanguageDropdown extends Component {
 
     const options = [
       { label: 'English', value: 'en'},
-      { label: '中文', value: 'zh'},
+      { label: '中文(简体)', value: 'zh'},
     ];
 
     const selectedOption = options.find(opt => opt.value === lang)

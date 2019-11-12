@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import MyNavbar from './components/Header/MyNavbar'
 import MyFlashes from './components/Flash/MyFlashes'
 import ProjectIndex from './components/Project/ProjectIndex'
@@ -26,7 +26,7 @@ class Routes extends Component {
     const isSignedIn = this.props.currentUser.isSignedIn
 
     return (
-      <Router>
+      <BrowserRouter>
         <MyNavbar />
         <MyFlashes />
         <div className="container">
@@ -40,7 +40,7 @@ class Routes extends Component {
             <Route exact path="/projects/:id" component={ProjectDetails} />
           </Switch>
         </div>
-      </Router>
+      </BrowserRouter>
 
     )
   }
