@@ -9,7 +9,8 @@ import EditProjectForm from './components/Project/EditProjectForm'
 import ProjectDetails from './components/Project/ProjectDetails'
 import SignIn from './components/SignIn/SignIn'
 import { connect } from 'react-redux'
-import {requireLoggedOut} from './services/auth_service'
+import { requireLoggedOut } from './services/auth_service'
+import Home from './components/Home/Home'
 
 import { generateRequireSignInWrapper } from 'redux-token-auth'
 
@@ -30,7 +31,7 @@ class Routes extends Component {
         <MyFlashes />
         <div className="container">
           <Switch>
-            <Route exact path="/" component={ProjectIndexController} />
+            <Route exact path="/" component={Home} />
             <Route exact path="/signin" component={requireLoggedOut(SignIn,isSignedIn)}/>
             <Route exact path="/projects" component={ProjectIndexController} />
             <Route exact path="/users" component={UserIndex} />
