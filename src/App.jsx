@@ -1,32 +1,31 @@
 import React, { Component } from 'react';
+import {Provider} from 'react-redux'
+import I18n from "redux-i18n"
 import './App.css';
-import ProjectIndex from './components/Project/ProjectIndex'
-import UserIndex from './components/User/UserIndex'
-import MyNavbar from './components/Header/MyNavbar'
-import AddNewProjectForm from './components/Project/AddNewProjectForm'
-import EditProjectForm from './components/Project/EditProjectForm'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Switch, Route } from 'react-router'
-import MyFlashes from './components/Flash/MyFlashes'
-import ProjectDetails from './components/Project/ProjectDetails'
+import Routes from './routes'
+import {translations} from "./config/locales/root"
+import combinedReducers from './reducers'
+
+import thunk from 'redux-thunk'
+import { createLogger } from 'redux-logger'
+import { createStore, applyMiddleware } from 'redux'
+
+import { verifyCredentials } from './config/redux-token-auth'
+
+const middleware = applyMiddleware(thunk, createLogger());
+const store = createStore(combinedReducers,middleware);
+verifyCredentials(store)
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <MyNavbar />
-        <MyFlashes />
-        <div className="container">
-          <Switch>
-            <Route exact path="/" component={ProjectIndex} />
-            <Route exact path="/projects" component={ProjectIndex} />
-            <Route exact path="/users" component={UserIndex} />
-            <Route exact path="/projects/new" component={AddNewProjectForm} />
-            <Route exact path="/projects/:id/edit" component={EditProjectForm} />
-            <Route exact path="/projects/:id" component={ProjectDetails} />
-          </Switch>
-        </div>
-      </Router>
+      <Provider store={store}>
+        <I18n translations={translations} initialLang="en" fallbackLang="zh">
+          <Routes />
+        </I18n>
+      </Provider>
     )
   }
 }
